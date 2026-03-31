@@ -1,5 +1,5 @@
 # High-Efficiency Data Extraction Framework
-**Technical Consultant:** [Your Name]
+**Technical Consultant:** Yifeng Hua
 **Project Scope:** 3-Week Information Systems Audit & Development
 
 ## 📌 Project Overview
