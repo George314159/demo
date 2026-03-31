@@ -1,6 +1,7 @@
 # High-Efficiency Data Extraction Framework
 **Technical Consultant:** Yifeng Hua
-**Project Scope:** 3-Week Information Systems Audit & Development
+
+**Project Scope:** Information Systems Audit & Development
 
 ## 📌 Project Overview
 This project is a modular Python-based framework designed for automated **Information Retrieval**. As part of an Information Studies initiative, it addresses the challenge of transforming unstructured web data into structured, actionable business intelligence.
