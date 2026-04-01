@@ -1,21 +1,29 @@
 from src.scraper import WebScraper
-import json
+from src.data_handler import DataHandler
 
 def main():
-    target_url = "https://news.ycombinator.com/" # Change to your target site
-    print(f"Starting Information Retrieval for: {target_url}...")
+    # Configuration
+    target_url = "https://news.ycombinator.com/" 
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     
+    print(f"--- Information Systems Pipeline Started ---")
+    
+    # 1. Extraction (The Scraper)
     bot = WebScraper()
-    html = bot.fetch_page(target_url)
-    data = bot.parse_data(html)
+    raw_html = bot.fetch_page(target_url)
+    processed_data = bot.parse_data(raw_html)
     
-    if data:
-        # Save results to a JSON file (Data Management)
-        with open('data/results.json', 'w') as f:
-            json.dump(data, f, indent=4)
-        print(f"Successfully extracted {len(data)} records.")
+    # 2. Management (The Handler)
+    if processed_data:
+        handler = DataHandler()
+        
+        # Save in multiple formats to demonstrate versatility
+        handler.save_as_json(processed_data, f"headlines_{timestamp}.json")
+        handler.save_as_csv(processed_data, f"headlines_{timestamp}.csv")
+        
+        print(f"Pipeline Complete: {len(processed_data)} records managed.")
     else:
-        print("No data retrieved.")
+        print("Pipeline Failed: No data retrieved.")
 
 if __name__ == "__main__":
     main()
