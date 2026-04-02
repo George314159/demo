@@ -26,6 +26,12 @@ The framework follows a strict **Separation of Concerns (SoC)** to ensure data i
 - **Directory Management:** Automated environment check to ensure the `/data` directory exists before execution, reducing runtime failures.
 - **Error Resilience:** Robust exception handling for File I/O operations to maintain system uptime during disk-write cycles.
 
+### 🔍 Data Validation Layer (`src/validator.py`)
+To ensure **High-Fidelity Information Retrieval**, a validation layer was implemented to:
+- **Data Sanitization:** Regex-based cleaning of raw string data to remove non-ASCII characters and redundant whitespace.
+- **Schema Enforcement:** Mandatory field checks to prevent "Null" or "Empty" records from entering the persistence layer.
+- **Integrity Logic:** Minimum-length constraints to ensure qualitative value in retrieved headlines.
+
 ## 🚀 Getting Started
 ### Prerequisites
 - Python 3.10+
