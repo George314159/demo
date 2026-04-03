@@ -38,6 +38,12 @@ To ensure **System Reliability** and facilitate **Technical Audits**, I implemen
 - **Error Diagnostics:** Integrated `try-except` wrappers to catch and log critical failures without crashing the host environment.
 - **Dual-Stream Output:** Simultaneous logging to the terminal (for real-time monitoring) and local storage (for historical analysis).
 
+### 🖥️ Business Intelligence Dashboard (`app.py`)
+To finalize the **Information Lifecycle**, I developed an interactive web interface using **Streamlit**:
+- **Dynamic Data Rendering:** Real-time visualization of extracted CSV datasets with automated KPI calculation.
+- **Audit Integration:** Sidebar toggle to view historical system logs, ensuring transparency in the automated pipeline.
+- **UX for Non-Technical Stakeholders:** Transforms raw technical outputs into a "human-readable" format for business decision-making.
+
 ## 🚀 Getting Started
 ### Prerequisites
 - Python 3.10+
