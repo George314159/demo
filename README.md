@@ -32,6 +32,12 @@ To ensure **High-Fidelity Information Retrieval**, a validation layer was implem
 - **Schema Enforcement:** Mandatory field checks to prevent "Null" or "Empty" records from entering the persistence layer.
 - **Integrity Logic:** Minimum-length constraints to ensure qualitative value in retrieved headlines.
 
+### 📊 System Observability (`src/logger.py`)
+To ensure **System Reliability** and facilitate **Technical Audits**, I implemented a centralized logging architecture:
+- **Persistent Audit Logs:** Generates daily `.log` files capturing timestamps, severity levels (INFO/ERROR), and stack traces.
+- **Error Diagnostics:** Integrated `try-except` wrappers to catch and log critical failures without crashing the host environment.
+- **Dual-Stream Output:** Simultaneous logging to the terminal (for real-time monitoring) and local storage (for historical analysis).
+
 ## 🚀 Getting Started
 ### Prerequisites
 - Python 3.10+
