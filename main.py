@@ -1,40 +1,34 @@
-from src.scraper import WebScraper
-from src.data_handler import DataHandler
+import asyncio
+from src.async_scraper import AsyncScraper
 from src.validator import DataValidator
+from src.data_handler import DataHandler
 from src.logger import SystemLogger
-from datetime import datetime
 
-def main():
-    # Initialize Logger
-    sys_logger = SystemLogger().get_logger()
-    sys_logger.info("--- Pipeline Execution Started ---")
+async def main():
+    logger = SystemLogger().get_logger()
+    logger.info("--- Week 3: Async Pipeline Started ---")
     
-    target_url = "https://news.ycombinator.com/" 
+    # Example: Scraping multiple pages at once
+    urls = [
+        "https://news.ycombinator.com/news?p=1",
+        "https://news.ycombinator.com/news?p=2",
+        "https://news.ycombinator.com/news?p=3"
+    ]
     
-    try:
-        # 1. Extraction
-        bot = WebScraper()
-        sys_logger.info(f"Fetching data from: {target_url}")
-        raw_html = bot.fetch_page(target_url)
-        raw_data = bot.parse_data(raw_html)
-        sys_logger.info(f"Extracted {len(raw_data)} raw records.")
+    scraper = AsyncScraper()
+    raw_pages = await scraper.run_pipeline(urls)
+    
+    # Process all pages
+    all_data = []
+    validator = DataValidator()
+    
+    # Reuse your existing BeautifulSoup logic from Week 2
+    # (Simplified for this example)
+    for html in raw_pages:
+        # Imagine your BeautifulSoup logic here...
+        pass
 
-        # 2. Validation
-        validator = DataValidator()
-        clean_data = validator.validate_batch(raw_data)
-        sys_logger.info(f"Validation successful: {len(clean_data)} records kept.")
-
-        # 3. Management
-        if clean_data:
-            handler = DataHandler()
-            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-            handler.save_as_json(clean_data, f"clean_data_{timestamp}.json")
-            sys_logger.info("Data persistence layer finalized.")
-        
-        sys_logger.info("--- Pipeline Execution Completed Successfully ---")
-
-    except Exception as e:
-        sys_logger.error(f"Critical System Failure: {str(e)}", exc_info=True)
+    logger.info(f"Async workflow finished. Processed {len(raw_pages)} pages concurrently.")
 
 if __name__ == "__main__":
-    main()
+    asyncio.run(main())

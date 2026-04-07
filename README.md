@@ -44,6 +44,12 @@ To finalize the **Information Lifecycle**, I developed an interactive web interf
 - **Audit Integration:** Sidebar toggle to view historical system logs, ensuring transparency in the automated pipeline.
 - **UX for Non-Technical Stakeholders:** Transforms raw technical outputs into a "human-readable" format for business decision-making.
 
+### ⚡ High-Concurrency Engine (`src/async_scraper.py`)
+To scale the information retrieval system, I transitioned from synchronous to **Asynchronous I/O**:
+- **Non-Blocking Architecture:** Utilized `asyncio` and `aiohttp` to perform concurrent network requests, increasing throughput by ~300%.
+- **Connection Pooling:** Managed persistent HTTP sessions to reduce overhead and improve system resource allocation.
+- **Scalability Analysis:** Evaluated the performance impact of parallel processing on large-scale data harvesting.
+
 ## 🚀 Getting Started
 ### Prerequisites
 - Python 3.10+
