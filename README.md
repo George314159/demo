@@ -50,6 +50,12 @@ To scale the information retrieval system, I transitioned from synchronous to **
 - **Connection Pooling:** Managed persistent HTTP sessions to reduce overhead and improve system resource allocation.
 - **Scalability Analysis:** Evaluated the performance impact of parallel processing on large-scale data harvesting.
 
+## 📦 Infrastructure & Deployment 
+To ensure **System Portability** and **Environmental Consistency**, the entire pipeline has been containerized using Docker:
+- **Immutable Infrastructure:** The `Dockerfile` defines a consistent runtime environment, eliminating "dependency drift."
+- **Isolation:** Each component (Extraction, Validation, Visualization) runs in an isolated container, protecting the host system.
+- **Scalability Ready:** The containerized architecture allows for easy deployment to cloud providers (AWS ECS, GCP Cloud Run) or orchestration via Kubernetes.
+
 ## 🚀 Getting Started
 ### Prerequisites
 - Python 3.10+
