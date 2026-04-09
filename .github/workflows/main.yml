@@ -27,7 +27,7 @@ jobs:
     - name: Run Unit Tests
 # This will run the tests you wrote yesterday automatically
       run: |
-        pytest tests/
+        pytest test/
 
     - name: Check Code Formatting (Linting)
 # Ensures your code follows professional standards
