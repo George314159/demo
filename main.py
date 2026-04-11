@@ -1,34 +1,22 @@
-import asyncio
-from src.async_scraper import AsyncScraper
+from src.provider_factory import DataProviderFactory
 from src.validator import DataValidator
-from src.data_handler import DataHandler
 from src.logger import SystemLogger
 
-async def main():
+def main():
     logger = SystemLogger().get_logger()
-    logger.info("--- Week 3: Async Pipeline Started ---")
     
-    # Example: Scraping multiple pages at once
-    urls = [
-        "https://news.ycombinator.com/news?p=1",
-        "https://news.ycombinator.com/news?p=2",
-        "https://news.ycombinator.com/news?p=3"
-    ]
-    
-    scraper = AsyncScraper()
-    raw_pages = await scraper.run_pipeline(urls)
-    
-    # Process all pages
-    all_data = []
-    validator = DataValidator()
-    
-    # Reuse your existing BeautifulSoup logic from Week 2
-    # (Simplified for this example)
-    for html in raw_pages:
-        # Imagine your BeautifulSoup logic here...
-        pass
+    # Switch between 'api' and 'scraper' easily
+    MODE = "api" 
+    logger.info(f"System operating in {MODE} mode.")
 
-    logger.info(f"Async workflow finished. Processed {len(raw_pages)} pages concurrently.")
+    fetch_data = DataProviderFactory.get_provider(mode=MODE)
+    raw_data = fetch_data()
+
+    validator = DataValidator()
+    clean_data = validator.validate_batch(raw_data)
+    
+    # ... rest of your persistence logic ...
+    logger.info("Pipeline finalized using Factory Pattern logic.")
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    main()
