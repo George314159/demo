@@ -1,22 +1,22 @@
-from src.provider_factory import DataProviderFactory
+from src.provider_strategy import InformationStrategy
 from src.validator import DataValidator
+from src.data_handler import DataHandler
 from src.logger import SystemLogger
 
 def main():
     logger = SystemLogger().get_logger()
     
-    # Switch between 'api' and 'scraper' easily
-    MODE = "api" 
-    logger.info(f"System operating in {MODE} mode.")
+    # The system now handles the "How" behind the scenes
+    strategy = InformationStrategy(preferred_mode="api")
+    raw_data = strategy.fetch_current_data()
 
-    fetch_data = DataProviderFactory.get_provider(mode=MODE)
-    raw_data = fetch_data()
-
-    validator = DataValidator()
-    clean_data = validator.validate_batch(raw_data)
-    
-    # ... rest of your persistence logic ...
-    logger.info("Pipeline finalized using Factory Pattern logic.")
+    if raw_data:
+        # Reusing our Week 2 & 3 modules
+        clean_data = DataValidator().validate_batch(raw_data)
+        DataHandler().save_as_json(clean_data)
+        logger.info("Pipeline finalized successfully.")
+    else:
+        logger.error("All data retrieval strategies exhausted.")
 
 if __name__ == "__main__":
     main()
