@@ -46,3 +46,13 @@ else:
             latest_log = max(log_files, key=os.path.getctime)
             with open(latest_log, "r") as f:
                 st.text(f.read())
+
+if st.sidebar.button("Run Performance Benchmark"):
+    from src.benchmarker import SystemBenchmarker
+    bench = SystemBenchmarker()
+    metrics = bench.run_benchmark()
+    
+    st.subheader("🚀 System Latency Comparison")
+    st.bar_chart(pd.DataFrame.from_dict(metrics, orient='index', columns=['Seconds']))
+    
+    st.success(f"The Cache is {metrics['Web Scraper'] / metrics['Cache']:.1f}x faster than the Scraper!")
