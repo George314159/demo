@@ -1,7 +1,7 @@
-# High-Efficiency Data Extraction Framework
-**Technical Consultant:** Yifeng Hua
-
-**Project Scope:** Information Systems Audit & Development
+# 🚀 Information Systems Consultant: Engineering Portfolio
+**Consultant:** Yifeng Hua  
+**Status:** Production-Ready Pipeline  
+**Objective:** Architecting a high-availability, audit-ready data extraction and BI framework for automated business intelligence.
 
 ## 📌 Project Overview
 This project is a modular Python-based framework designed for automated **Information Retrieval**. As part of an Information Studies initiative, it addresses the challenge of transforming unstructured web data into structured, actionable business intelligence.
@@ -55,6 +55,11 @@ To ensure **System Portability** and **Environmental Consistency**, the entire p
 - **Immutable Infrastructure:** The `Dockerfile` defines a consistent runtime environment, eliminating "dependency drift."
 - **Isolation:** Each component (Extraction, Validation, Visualization) runs in an isolated container, protecting the host system.
 - **Scalability Ready:** The containerized architecture allows for easy deployment to cloud providers (AWS ECS, GCP Cloud Run) or orchestration via Kubernetes.
+
+## 🛡️ DevOps, Security & Quality Assurance
+- **CI/CD Pipeline:** Automated testing via GitHub Actions (pytest + flake8).
+- **Security Auditing:** Static analysis (Bandit) and dependency monitoring (Safety).
+- **System Maintenance:** Automated log rotation and cache cleanup via `src/maintenance.py`.
 
 ## 🚀 Getting Started
 ### Prerequisites
